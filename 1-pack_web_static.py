@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 '''Generates .tgz archive from contents of web_static folder'''
 from datetime import datetime
 from fabric.api import local
