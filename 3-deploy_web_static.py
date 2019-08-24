@@ -2,7 +2,7 @@
 # Creates archive and deploys it to web server
 
 
-from fabric.api import env, put, run
+from fabric.api import env, local, put, run
 from datetime import datetime
 import os
 import tarfile
