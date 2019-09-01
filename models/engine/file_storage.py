@@ -73,3 +73,7 @@ class FileStorage:
     def reset(self):
         """Reset all objects for testing purposes"""
         self.__objects = {}
+
+    def close(self):
+        '''Calls reload() method for deserializing JSON objects'''
+        self.reload()
