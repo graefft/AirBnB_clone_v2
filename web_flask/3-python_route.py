@@ -33,5 +33,5 @@ def py_route(text='is cool'):
     return py_text
 
 
-if __name__  == '__main__':
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
