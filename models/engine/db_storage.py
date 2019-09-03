@@ -31,14 +31,14 @@ class DBStorage:
                                       .format(user, password, host, database),
                                       pool_pre_ping=True)
         if os.getenv('HBNB_ENV') == 'test':
-            Base.metadata.drop_all(self.__engine)
+            Base.metadata.drop_all(bind=self.__engine)
             # Drop all tables for testing purposes
 
     def all(self, cls=None):
         '''Query all objects on current database session'''
         all_dict = {}
         if cls:
-            result = self.__session.query(cls).all()
+            result = self.__session.query(eval(cls)).all()
         else:
             result = []
             _list = ['User', 'State', 'City', 'Review', 'Place', 'Amenity']
@@ -75,7 +75,7 @@ class DBStorage:
         self.__session = Session()
 
     def close(self):
-        '''Calls remove() method on private session attribute
+        '''Calls close() method on private session attribute
            or close on the class Session
         '''
-        self.__session.remove()
+        self.__session.close()
