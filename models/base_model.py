@@ -42,13 +42,13 @@ class BaseModel:
                     value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 if key != "__class__":
                     setattr(self, key, value)
-            if self.id is None:
+            if 'id' not in kwargs:
                 self.id = str(uuid.uuid4())
             datetimeNow = datetime.now()
             # Use variable assignment to guarantee matching created/updated at
-            if self.created_at is None:
+            if 'created_at' not in kwargs:
                 self.created_at = datetimeNow
-            if self.updated_at is None:
+            if 'updated_at' not in kwargs:
                 self.updated_at = datetimeNow
         else:
             self.id = str(uuid.uuid4())
@@ -60,7 +60,7 @@ class BaseModel:
             returns a string of class name, id, and dictionary
         """
         return "[{}] ({}) {}".format(
-            type(self).__name__, self.id, self.__dict__)
+            type(self).__name__, self.id, self.to_dict())
 
     def __repr__(self):
         """return a string representaion
