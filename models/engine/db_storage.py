@@ -36,12 +36,13 @@ class DBStorage:
 
     def all(self, cls=None):
         '''Query all objects on current database session'''
+        _list = ['User', 'State', 'City', 'Review', 'Place', 'Amenity']
         all_dict = {}
+        result = []
         if cls:
-            result = self.__session.query(eval(cls)).all()
+            result = self.__session.query(cls).all()
         else:
             result = []
-            _list = ['User', 'State', 'City', 'Review', 'Place', 'Amenity']
             for i in _list:
                 y = self.__session.query(eval(i))
                 for j in y:
